@@ -73,3 +73,4 @@ describe("Limma + Voom Integration", {
     expect_equal(names(voom_res), c("logFC", "AveExpr", "t", "P.Value", "adj.P.Val", "B"))
   })
 })
+

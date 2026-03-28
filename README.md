@@ -28,9 +28,14 @@ You can use `testthat:test_file('test_main.R')` in your R console to run all tes
 ## Function Details
 
 ### 1. `load_n_trim()`
-Once again we have some data to load into R in order to manipulate. We'll be loading a counts file, which is a matrix of genes (rows) by samples (columns). Each cell is the number of that gene found in that sample. This is a good opportunity to use a data frame or a tibble, but because of package restrictions we will be sticking to data frames for this assignment. We're using a couple different packages to process our data, and they input/output _exclusively_ in data frames, so we will be consistent and save ourselves some trouble with conversions.  
+Once again we have some data to load into R in order to manipulate. We'll be loading a counts file, which is a matrix of genes (rows) by samples (columns). 
+Each cell is the number of that gene found in that sample. This is a good opportunity to use a data frame or a tibble, but because of package restrictions we
+will be sticking to data frames for this assignment. We're using a couple different packages to process our data, and they input/output _exclusively_ in data frames, 
+so we will be consistent and save ourselves some trouble with conversions.  
 
-We want to return a data frame that is essentially identical to our input file (always a good idea to use the command line to see what you're working with). Ensure the gene names are stored as `row.names` and _not_ as a separate column, data frames have a distinction between the two. This function should also reduce the columns to just those of interest (P0 and Adult).
+We want to return a data frame that is essentially identical to our input file (always a good idea to use the command line to see what you're working with). Ensure the 
+gene names are stored as `row.names` and _not_ as a separate column, data frames have a distinction between the two. This function should also reduce the columns to just 
+those of interest (P0 and Adult).
 
 ***Hints***
 Row names can be changed using the `row.names()` function. The new row names must be a character vector of exactly the same length.
@@ -65,10 +70,15 @@ describe("Data Loading and Reduction", {
 })
 ```
 
-The tests for this assignment are relatively straightforward, mostly ensuring that data is loaded and ends up in the right shape and format. The first test ensures the columns were filtered, the second ensures the size is correct, and the final ensures it is a data frame and _not_ a tibble. No tibbles. Tibble-less?
+The tests for this assignment are relatively straightforward, mostly ensuring that data is loaded and ends up in the right shape and format. The 
+first test ensures the columns were filtered, the second ensures the size is correct, and the final ensures it is a data frame and _not_ a tibble. No tibbles. 
+Tibble-less?
 
 ### 2. `run_deseq()`
-This is the first of three functions that technically do identical things (but in different ways). One of the most popular Bioconductor packages, DESeq2 has a number of options available for differential expression analysis. We will load in the counts data, select our variables of interest, and use `DESeq()` to process them. Links are included in the function description to DESeq2 documentation, you will find answers to most questions there, especially since those were the documents used to _write_ this assignment. This function will return the results of the analysis.
+This is the first of three functions that technically do identical things (but in different ways). One of the most popular Bioconductor packages,
+DESeq2 has a number of options available for differential expression analysis. We will load in the counts data, select our variables of interest, and 
+use `DESeq()` to process them. Links are included in the function description to DESeq2 documentation, you will find answers to most questions there, 
+especially since those were the documents used to _write_ this assignment. This function will return the results of the analysis.
 
 #### Tests
 ```

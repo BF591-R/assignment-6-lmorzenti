@@ -96,7 +96,8 @@ deseq_res <- deseq_res[order(deseq_res$pvalue),][1:1000,]
 limma_res <- limma_res[order(limma_res$P.Value),][1:1000,]
 cat("Limma shape after: ")
 print(str(limma_res))
-cat("head(deseq_results), notice the order of the p-values nad p-adjusted values:")
+cat("notice the order of the p-values nad p-adjusted values:")
+head(deseq_res)
 ```
 
 We want to create a venn diagram using the `ggVennDiagram` package. This package asks for a list object as input, so we can create a list that contains the three named collections of genes from our separate packages. Calling row.names() will give us the names of all the genes.
@@ -112,6 +113,9 @@ ggVennDiagram(x) +
 
 While plots can be used to create publication ready images, we can also utilize them to check our data and confirm our assumptions. Limma seems to have a number of selected genes that don't match DESeq2 and edgeR, so we're interested to see how the distributions of p-values compare to one another. We did not write this plot as a function, but can use the data we generate with `combine_pval()` to `facet_wrap()` the three data sets together. Use facet wrap with the `~ package` parameter to recreate the figure below. 
 ```{r Facet plot, fig.align='center', fig.cap='Figure 2 - Three histogram plots comparing the distribution of p-values for three differential expression packages. Note that edgeR and DESeq2 have their values concentrated closer to 0 than the Limma package results.'}
+
+deseq_res <- as.data.frame(deseq_res)
+
 combine_pval(deseq_res, edger_res, limma_res) %>%
   ggplot(aes(pval)) +
   geom_histogram(bins = 45, color = "white") +
